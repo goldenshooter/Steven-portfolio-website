@@ -30,10 +30,10 @@ export function CityView({ background, hotspots }: CityViewProps) {
 
   const cityTransform = useMemo(() => {
     if (!activeHotspot) {
-      return "translate3d(0, 0, 0) scale(1)";
+      return "translate3d(-50%, -50%, 0) scale(1)";
     }
 
-    return `translate3d(${activeHotspot.pan.x}%, ${activeHotspot.pan.y}%, 0) scale(${activeHotspot.zoom})`;
+    return `translate3d(calc(-50% + ${activeHotspot.pan.x}%), calc(-50% + ${activeHotspot.pan.y}%), 0) scale(${activeHotspot.zoom})`;
   }, [activeHotspot]);
 
   const transformOrigin = activeHotspot
@@ -42,46 +42,64 @@ export function CityView({ background, hotspots }: CityViewProps) {
 
   return (
     <main className="cityExperience" aria-label="Interactive Auckland portfolio">
-      <section className="cityStage" aria-label="Auckland exploration map">
-        <div
-          className="cityCanvas"
-          data-zoomed={Boolean(activeHotspot)}
-          style={{ transform: cityTransform, transformOrigin }}
-        >
-          <Image
-            alt={background.alt}
-            className="cityImage"
-            fill
-            priority
-            sizes="100vw"
-            src={background.src}
-          />
-          <div className="cityVignette" aria-hidden="true" />
-          <div className="webLines" aria-hidden="true" />
+      <section className="cityShell" aria-label="Auckland portfolio overview">
+        <div className="cityViewport">
+          <button className="menuButton" type="button" aria-label="Open site menu">
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+          </button>
 
-          {hotspots.map((hotspot) => (
-            <Hotspot
-              hotspot={hotspot}
-              isActive={activeHotspot?.id === hotspot.id}
-              key={hotspot.id}
-              onSelect={setActiveHotspot}
+          <button className="aboutSiteButton" type="button">
+            About this site
+          </button>
+
+          <div
+            className="cityCanvas"
+            data-zoomed={Boolean(activeHotspot)}
+            style={{ transform: cityTransform, transformOrigin }}
+          >
+            <Image
+              alt={background.alt}
+              className="cityImage"
+              fill
+              priority
+              sizes="(max-width: 980px) 100vw, 80vw"
+              src={background.src}
+              unoptimized
             />
-          ))}
+            <div className="cityVignette" aria-hidden="true" />
+
+            {hotspots.map((hotspot) => (
+              <Hotspot
+                hotspot={hotspot}
+                isActive={activeHotspot?.id === hotspot.id}
+                key={hotspot.id}
+                onSelect={setActiveHotspot}
+              />
+            ))}
+          </div>
+
+          <header className="introPanel">
+            <h1>Steven Zhang</h1>
+            <p>Senior Software Engineer</p>
+          </header>
+
+          <div className="exploreCard" aria-hidden="true">
+            <strong>Explore Auckland</strong>
+            <span>Click a location to zoom in and learn more about me</span>
+          </div>
+
+          <div className="gestureHint" aria-hidden="true">
+            Scroll / drag to look around
+          </div>
+
+          <LocationOverlay
+            activeHotspot={activeHotspot}
+            onClose={() => setActiveHotspot(null)}
+          />
         </div>
 
-        <header className="introPanel">
-          <p className="eyebrow">Auckland-based portfolio</p>
-          <h1>Steven Zhang</h1>
-          <p>
-            Senior Frontend / Software Engineer exploring product engineering,
-            architecture, performance, mentoring, and community through the city.
-          </p>
-        </header>
-
-        <LocationOverlay
-          activeHotspot={activeHotspot}
-          onClose={() => setActiveHotspot(null)}
-        />
       </section>
     </main>
   );

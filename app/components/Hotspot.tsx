@@ -25,7 +25,6 @@ export function Hotspot({ hotspot, isActive, onSelect }: HotspotProps) {
       <span className="hotspotPulse" aria-hidden="true" />
       <span className="hotspotLabel">
         <span>{hotspot.title}</span>
-        <small>{hotspot.location}</small>
       </span>
     </button>
   );

@@ -28,6 +28,7 @@ export function LocationOverlay({
               fill
               sizes="(max-width: 720px) 100vw, 30rem"
               src={activeHotspot.detailImage.src}
+              unoptimized
             />
           </div>
         ) : null}
