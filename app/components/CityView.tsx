@@ -1,10 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Hotspot } from './Hotspot'
-import { LocationOverlay } from './LocationOverlay'
+import { HotspotDetailPanel } from './HotspotDetailPanel'
 import type { HotspotConfig } from '../types/portfolio'
+
+const DETAIL_PANEL_DELAY_MS = 1500
+const DEFAULT_DETAIL_ZOOM = 2.2
 
 type CityViewProps = {
   background: {
@@ -16,32 +19,85 @@ type CityViewProps = {
 
 export function CityView({ background, hotspots }: CityViewProps) {
   const [activeHotspot, setActiveHotspot] = useState<HotspotConfig | null>(null)
+  const [isDetailPanelVisible, setIsDetailPanelVisible] = useState(false)
+  const detailPanelTimerRef = useRef<number | null>(null)
+
+  const activeDetailHotspot = activeHotspot?.detailImage ? activeHotspot : null
+  const isDetailActive = Boolean(activeDetailHotspot)
+
+  const clearDetailPanelTimer = useCallback(() => {
+    if (detailPanelTimerRef.current !== null) {
+      window.clearTimeout(detailPanelTimerRef.current)
+      detailPanelTimerRef.current = null
+    }
+  }, [])
+
+  const shouldZoom = isDetailActive
+
+  const cityTransform = useMemo(() => {
+    if (!activeDetailHotspot) {
+      return 'translate3d(-50%, -50%, 0) scale(1)'
+    }
+
+    const zoom = activeDetailHotspot.zoom ?? DEFAULT_DETAIL_ZOOM
+    const panX = activeDetailHotspot.pan?.x ?? 0
+    const panY = activeDetailHotspot.pan?.y ?? 0
+
+    return `translate3d(calc(-50% + ${panX}%), calc(-50% + ${panY}%), 0) scale(${zoom})`
+  }, [activeDetailHotspot])
+
+  const transformOrigin = activeDetailHotspot
+    ? `${activeDetailHotspot.x}% ${activeDetailHotspot.y}%`
+    : '50% 50%'
+
+  const handleHotspotSelect = useCallback(
+    (hotspot: HotspotConfig) => {
+      clearDetailPanelTimer()
+      setActiveHotspot(hotspot)
+
+      if (!hotspot.detailImage) {
+        setIsDetailPanelVisible(false)
+        return
+      }
+
+      setIsDetailPanelVisible(false)
+      detailPanelTimerRef.current = window.setTimeout(() => {
+        setIsDetailPanelVisible(true)
+        detailPanelTimerRef.current = null
+      }, DETAIL_PANEL_DELAY_MS)
+    },
+    [clearDetailPanelTimer],
+  )
+
+  const closeActiveView = useCallback(() => {
+    clearDetailPanelTimer()
+    setIsDetailPanelVisible(false)
+    setActiveHotspot(null)
+  }, [clearDetailPanelTimer])
+
+  useEffect(() => {
+    return () => clearDetailPanelTimer()
+  }, [clearDetailPanelTimer])
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setActiveHotspot(null)
+        closeActiveView()
       }
     }
 
     window.addEventListener('keydown', closeOnEscape)
     return () => window.removeEventListener('keydown', closeOnEscape)
-  }, [])
-
-  const cityTransform = useMemo(() => {
-    if (!activeHotspot) {
-      return 'translate3d(-50%, -50%, 0) scale(1)'
-    }
-
-    return `translate3d(calc(-50% + ${activeHotspot.pan.x}%), calc(-50% + ${activeHotspot.pan.y}%), 0) scale(${activeHotspot.zoom})`
-  }, [activeHotspot])
-
-  const transformOrigin = activeHotspot ? `${activeHotspot.x}% ${activeHotspot.y}%` : '50% 50%'
+  }, [closeActiveView])
 
   return (
     <main className="cityExperience" aria-label="Interactive Auckland portfolio">
       <section className="cityShell" aria-label="Auckland portfolio overview">
-        <div className="cityViewport">
+        <div
+          className="cityViewport"
+          data-detail-active={isDetailActive}
+          data-detail-hotspot-active={isDetailActive}
+        >
           <button className="menuButton" type="button" aria-label="Open site menu">
             <span aria-hidden="true" />
             <span aria-hidden="true" />
@@ -54,7 +110,7 @@ export function CityView({ background, hotspots }: CityViewProps) {
 
           <div
             className="cityCanvas"
-            data-zoomed={Boolean(activeHotspot)}
+            data-zoomed={shouldZoom}
             style={{ transform: cityTransform, transformOrigin }}
           >
             <Image
@@ -73,7 +129,7 @@ export function CityView({ background, hotspots }: CityViewProps) {
                 hotspot={hotspot}
                 isActive={activeHotspot?.id === hotspot.id}
                 key={hotspot.id}
-                onSelect={setActiveHotspot}
+                onSelect={handleHotspotSelect}
               />
             ))}
           </div>
@@ -92,7 +148,17 @@ export function CityView({ background, hotspots }: CityViewProps) {
             Scroll / drag to look around
           </div>
 
-          <LocationOverlay activeHotspot={activeHotspot} onClose={() => setActiveHotspot(null)} />
+          <HotspotDetailPanel
+            hotspot={isDetailActive && isDetailPanelVisible ? activeDetailHotspot : null}
+            onClose={closeActiveView}
+            variant="detail"
+          />
+
+          <HotspotDetailPanel
+            hotspot={isDetailActive ? null : activeHotspot}
+            onClose={closeActiveView}
+            variant="overlay"
+          />
         </div>
       </section>
     </main>

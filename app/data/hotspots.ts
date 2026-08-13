@@ -14,23 +14,21 @@ export const hotspots: HotspotConfig[] = [
     location: 'Sky Tower',
     x: 26.4,
     y: 45.6,
-    zoom: 2.45,
-    pan: { x: 20, y: -16 },
+    zoom: 2.36,
+    pan: { x: 7, y: -8 },
     detailImage: {
-      src: '/images/sky-tower-detail.jpg',
+      src: '/images/sky-tower-detail.png',
       alt: 'Close-up view of Sky Tower in Auckland',
     },
     content: {
       eyebrow: 'Senior Software Engineer',
-      title: 'Frontend architecture shaped by product outcomes',
+      title: 'Career',
       summary:
-        '7+ years building reliable web products with React, TypeScript, JavaScript, Next.js, Node.js, Azure, and GCP. Placeholder content for now, ready for your real story.',
-      highlights: [
-        'Led frontend architecture decisions across complex product surfaces.',
-        'Improved performance, accessibility, and delivery quality in production systems.',
-        'Mentored engineers through pragmatic code review and pairing.',
-      ],
+        'Senior Front-End Engineer with 8+ years of experience building scalable, customer-facing web applications using React and TypeScript.',
+      highlights: [],
       technologies: ['React', 'TypeScript', 'Next.js', 'Node.js', 'Azure', 'GCP'],
+      detailLayout: 'career',
+      stackLabel: 'Tech Stack',
     },
   },
   {
@@ -39,8 +37,10 @@ export const hotspots: HotspotConfig[] = [
     location: 'Vero Centre',
     x: 38.8,
     y: 60.8,
-    zoom: 2.2,
-    pan: { x: 8, y: -20 },
+    detailImage: {
+      src: '/images/vero-centre-detail.png',
+      alt: 'Close-up view of Vero Centre in Auckland',
+    },
     content: {
       eyebrow: 'Product Engineering',
       title: 'Interactive systems with clean, durable foundations',
@@ -60,8 +60,10 @@ export const hotspots: HotspotConfig[] = [
     location: 'PWC Tower',
     x: 53.6,
     y: 59.2,
-    zoom: 2.15,
-    pan: { x: -10, y: -19 },
+    detailImage: {
+      src: '/images/pwc-tower-detail.png',
+      alt: 'Close-up view of PWC Tower in Auckland',
+    },
     content: {
       eyebrow: 'Based in Auckland',
       title: 'A pragmatic frontend engineer with a product mindset',
@@ -81,8 +83,10 @@ export const hotspots: HotspotConfig[] = [
     location: 'Port cranes',
     x: 68.2,
     y: 65.2,
-    zoom: 2.05,
-    pan: { x: -27, y: -22 },
+    detailImage: {
+      src: '/images/port-cranes-detail.png',
+      alt: 'Close-up view of Port Cranes in Auckland',
+    },
     content: {
       eyebrow: 'Community & Volunteer Work',
       title: 'Engineering that stays connected to people',
@@ -100,10 +104,12 @@ export const hotspots: HotspotConfig[] = [
     id: 'contact',
     title: 'Contact',
     location: 'Harbour edge',
-    x: 43.8,
-    y: 81.2,
-    zoom: 1.85,
-    pan: { x: 0, y: -30 },
+    x: 33.8,
+    y: 76.2,
+    detailImage: {
+      src: '/images/harbour-edge.png',
+      alt: 'Close-up view of Harbour Edge in Auckland',
+    },
     content: {
       eyebrow: 'Let us connect',
       title: 'Available for frontend and software engineering conversations',

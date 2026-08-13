@@ -4,6 +4,8 @@ export type PortfolioContentBlock = {
   summary: string
   highlights: string[]
   technologies?: string[]
+  detailLayout?: 'default' | 'career'
+  stackLabel?: string
 }
 
 export type HotspotConfig = {
@@ -12,8 +14,8 @@ export type HotspotConfig = {
   location: string
   x: number
   y: number
-  zoom: number
-  pan: {
+  zoom?: number
+  pan?: {
     x: number
     y: number
   }
