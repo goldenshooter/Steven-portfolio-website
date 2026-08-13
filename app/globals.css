@@ -241,6 +241,19 @@ button {
   border-color: rgba(57, 167, 255, 0.58);
 }
 
+.detailImageFrame {
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0.45rem;
+  margin: 1rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.detailImageFrame img {
+  object-fit: cover;
+}
+
 .portfolioContent h2 {
   font-size: clamp(1.55rem, 3vw, 2.35rem);
   line-height: 1.04;

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { HotspotConfig } from "../types/portfolio";
 import { BackButton } from "./BackButton";
 import { PortfolioContent } from "./PortfolioContent";
@@ -20,6 +21,16 @@ export function LocationOverlay({
     >
       <div className="overlayChrome">
         <BackButton onClick={onClose} />
+        {activeHotspot?.detailImage ? (
+          <div className="detailImageFrame">
+            <Image
+              alt={activeHotspot.detailImage.alt}
+              fill
+              sizes="(max-width: 720px) 100vw, 30rem"
+              src={activeHotspot.detailImage.src}
+            />
+          </div>
+        ) : null}
         {activeHotspot ? <PortfolioContent content={activeHotspot.content} /> : null}
       </div>
     </aside>

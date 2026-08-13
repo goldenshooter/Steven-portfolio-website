@@ -1,6 +1,8 @@
 import type { HotspotConfig } from "../types/portfolio";
 
 export const aucklandBackground = {
+  // Replace this file with your final Auckland aerial image, or point this
+  // value at a new file you add under public/images.
   src: "/images/auckland-placeholder.png",
   alt: "Cinematic aerial placeholder image of Auckland harbour and city lights",
 };
