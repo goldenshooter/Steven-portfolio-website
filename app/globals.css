@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #f5f8fb;
@@ -68,7 +68,7 @@ button {
   will-change: transform;
 }
 
-.cityCanvas[data-zoomed="true"] {
+.cityCanvas[data-zoomed='true'] {
   filter: saturate(1.04) contrast(1.03);
 }
 
@@ -210,8 +210,13 @@ button {
 .hotspotPulse {
   aspect-ratio: 1;
   animation: pulse 2.4s ease-out infinite;
-  background:
-    radial-gradient(circle, #ffffff 0 31%, var(--ink) 32% 46%, #ffffff 47% 63%, rgba(12, 37, 60, 0.9) 64% 100%);
+  background: radial-gradient(
+    circle,
+    #ffffff 0 31%,
+    var(--ink) 32% 46%,
+    #ffffff 47% 63%,
+    rgba(12, 37, 60, 0.9) 64% 100%
+  );
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 999px;
   box-shadow:
@@ -252,7 +257,7 @@ button {
 }
 
 .hotspot:hover .hotspotLabel,
-.hotspot[data-active="true"] .hotspotLabel {
+.hotspot[data-active='true'] .hotspotLabel {
   background: #071b2f;
   border-color: rgba(255, 255, 255, 0.42);
 }
@@ -271,7 +276,7 @@ button {
   z-index: 8;
 }
 
-.locationOverlay[data-visible="true"] {
+.locationOverlay[data-visible='true'] {
   opacity: 1;
   pointer-events: auto;
   transform: translate3d(0, 0, 0);
@@ -386,7 +391,7 @@ button {
 }
 
 @media (max-width: 720px) {
-  .cityCanvas[data-zoomed="true"] {
+  .cityCanvas[data-zoomed='true'] {
     transform: translate3d(0, -7%, 0) scale(1.55) !important;
   }
 

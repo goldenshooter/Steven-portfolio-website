@@ -1,6 +1,6 @@
 type BackButtonProps = {
-  onClick: () => void;
-};
+  onClick: () => void
+}
 
 export function BackButton({ onClick }: BackButtonProps) {
   return (
@@ -8,5 +8,5 @@ export function BackButton({ onClick }: BackButtonProps) {
       <span aria-hidden="true">←</span>
       Full Auckland view
     </button>
-  );
+  )
 }

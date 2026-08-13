@@ -1,17 +1,14 @@
-import Image from "next/image";
-import type { HotspotConfig } from "../types/portfolio";
-import { BackButton } from "./BackButton";
-import { PortfolioContent } from "./PortfolioContent";
+import Image from 'next/image'
+import type { HotspotConfig } from '../types/portfolio'
+import { BackButton } from './BackButton'
+import { PortfolioContent } from './PortfolioContent'
 
 type LocationOverlayProps = {
-  activeHotspot: HotspotConfig | null;
-  onClose: () => void;
-};
+  activeHotspot: HotspotConfig | null
+  onClose: () => void
+}
 
-export function LocationOverlay({
-  activeHotspot,
-  onClose,
-}: LocationOverlayProps) {
+export function LocationOverlay({ activeHotspot, onClose }: LocationOverlayProps) {
   return (
     <aside
       aria-hidden={!activeHotspot}
@@ -35,5 +32,5 @@ export function LocationOverlay({
         {activeHotspot ? <PortfolioContent content={activeHotspot.content} /> : null}
       </div>
     </aside>
-  );
+  )
 }

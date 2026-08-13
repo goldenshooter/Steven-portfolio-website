@@ -1,11 +1,11 @@
-import type { CSSProperties } from "react";
-import type { HotspotConfig } from "../types/portfolio";
+import type { CSSProperties } from 'react'
+import type { HotspotConfig } from '../types/portfolio'
 
 type HotspotProps = {
-  hotspot: HotspotConfig;
-  isActive: boolean;
-  onSelect: (hotspot: HotspotConfig) => void;
-};
+  hotspot: HotspotConfig
+  isActive: boolean
+  onSelect: (hotspot: HotspotConfig) => void
+}
 
 export function Hotspot({ hotspot, isActive, onSelect }: HotspotProps) {
   return (
@@ -16,8 +16,8 @@ export function Hotspot({ hotspot, isActive, onSelect }: HotspotProps) {
       onClick={() => onSelect(hotspot)}
       style={
         {
-          "--hotspot-x": `${hotspot.x}%`,
-          "--hotspot-y": `${hotspot.y}%`,
+          '--hotspot-x': `${hotspot.x}%`,
+          '--hotspot-y': `${hotspot.y}%`,
         } as CSSProperties
       }
       type="button"
@@ -27,5 +27,5 @@ export function Hotspot({ hotspot, isActive, onSelect }: HotspotProps) {
         <span>{hotspot.title}</span>
       </span>
     </button>
-  );
+  )
 }

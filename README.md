@@ -40,20 +40,19 @@ SIWC-authenticated workspace sites may also receive
 Treat the full name as optional and fall back to email when it is absent:
 
 ```tsx
-import { headers } from "next/headers";
+import { headers } from 'next/headers'
 
 export default async function Home() {
-  const requestHeaders = await headers();
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
+  const requestHeaders = await headers()
+  const email = requestHeaders.get('oai-authenticated-user-email')
+  const encodedFullName = requestHeaders.get('oai-authenticated-user-full-name')
   const fullName =
     encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
+    requestHeaders.get('oai-authenticated-user-full-name-encoding') === 'percent-encoded-utf-8'
       ? decodeURIComponent(encodedFullName)
-      : null;
+      : null
 
-  const displayName = fullName ?? email;
+  const displayName = fullName ?? email
   // ...
 }
 ```
@@ -90,6 +89,8 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 - `npm run dev`: start local development
 - `npm run build`: verify the vinext build output
 - `npm test`: build the starter and verify its rendered loading skeleton
+- `npm run format`: format the project with Prettier
+- `npm run format:check`: check formatting without changing files
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 
 ## Learn More

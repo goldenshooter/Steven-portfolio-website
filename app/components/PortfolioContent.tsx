@@ -1,8 +1,8 @@
-import type { PortfolioContentBlock } from "../types/portfolio";
+import type { PortfolioContentBlock } from '../types/portfolio'
 
 type PortfolioContentProps = {
-  content: PortfolioContentBlock;
-};
+  content: PortfolioContentBlock
+}
 
 export function PortfolioContent({ content }: PortfolioContentProps) {
   return (
@@ -25,5 +25,5 @@ export function PortfolioContent({ content }: PortfolioContentProps) {
         </ul>
       ) : null}
     </article>
-  );
+  )
 }

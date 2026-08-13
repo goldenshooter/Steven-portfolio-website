@@ -1,44 +1,42 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
-import { Hotspot } from "./Hotspot";
-import { LocationOverlay } from "./LocationOverlay";
-import type { HotspotConfig } from "../types/portfolio";
+import Image from 'next/image'
+import { useEffect, useMemo, useState } from 'react'
+import { Hotspot } from './Hotspot'
+import { LocationOverlay } from './LocationOverlay'
+import type { HotspotConfig } from '../types/portfolio'
 
 type CityViewProps = {
   background: {
-    src: string;
-    alt: string;
-  };
-  hotspots: HotspotConfig[];
-};
+    src: string
+    alt: string
+  }
+  hotspots: HotspotConfig[]
+}
 
 export function CityView({ background, hotspots }: CityViewProps) {
-  const [activeHotspot, setActiveHotspot] = useState<HotspotConfig | null>(null);
+  const [activeHotspot, setActiveHotspot] = useState<HotspotConfig | null>(null)
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setActiveHotspot(null);
+      if (event.key === 'Escape') {
+        setActiveHotspot(null)
       }
-    };
+    }
 
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, []);
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [])
 
   const cityTransform = useMemo(() => {
     if (!activeHotspot) {
-      return "translate3d(-50%, -50%, 0) scale(1)";
+      return 'translate3d(-50%, -50%, 0) scale(1)'
     }
 
-    return `translate3d(calc(-50% + ${activeHotspot.pan.x}%), calc(-50% + ${activeHotspot.pan.y}%), 0) scale(${activeHotspot.zoom})`;
-  }, [activeHotspot]);
+    return `translate3d(calc(-50% + ${activeHotspot.pan.x}%), calc(-50% + ${activeHotspot.pan.y}%), 0) scale(${activeHotspot.zoom})`
+  }, [activeHotspot])
 
-  const transformOrigin = activeHotspot
-    ? `${activeHotspot.x}% ${activeHotspot.y}%`
-    : "50% 50%";
+  const transformOrigin = activeHotspot ? `${activeHotspot.x}% ${activeHotspot.y}%` : '50% 50%'
 
   return (
     <main className="cityExperience" aria-label="Interactive Auckland portfolio">
@@ -94,13 +92,9 @@ export function CityView({ background, hotspots }: CityViewProps) {
             Scroll / drag to look around
           </div>
 
-          <LocationOverlay
-            activeHotspot={activeHotspot}
-            onClose={() => setActiveHotspot(null)}
-          />
+          <LocationOverlay activeHotspot={activeHotspot} onClose={() => setActiveHotspot(null)} />
         </div>
-
       </section>
     </main>
-  );
+  )
 }
