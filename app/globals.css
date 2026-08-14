@@ -191,8 +191,8 @@ button {
   position: absolute;
   transform: translate(-50%, -50%);
   transition:
-    opacity 100ms ease,
-    transform 100ms ease;
+    opacity 1000ms ease,
+    transform 260ms ease;
   width: min(78vw, 70rem);
   z-index: 8;
 }
@@ -202,11 +202,16 @@ button {
 }
 
 .detailContent {
+  backdrop-filter: blur(3px);
+  background: linear-gradient(90deg, rgba(8, 28, 46, 0.72), rgba(8, 28, 46, 0.18));
+  border-left: 1px solid rgba(255, 255, 255, 0.22);
+  bottom: 0;
   top: 0;
   right: 0;
   display: flex;
   flex-direction: column;
   gap: 0.95rem;
+  max-width: min(43%, 34rem);
   padding: clamp(1.1rem, 2.8vw, 1.45rem);
   position: absolute;
 }
@@ -396,15 +401,6 @@ button {
   object-fit: cover;
 }
 
-.eyebrow {
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.78rem;
-  font-weight: 750;
-  letter-spacing: 0;
-  margin: 0 0 0.7rem;
-  text-transform: uppercase;
-}
-
 .portfolioContent h2 {
   font-size: clamp(1.55rem, 3.5vw, 3.2rem);
   line-height: 1.04;
@@ -446,10 +442,27 @@ button {
 }
 
 .summary {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
-  line-height: 1.62;
+  color: rgba(245, 251, 255, 0.98);
+  font-size: clamp(1.06rem, 1.1vw, 1.2rem);
+  font-weight: 520;
+  letter-spacing: 0.01em;
+  line-height: 1.72;
   margin: 1.1rem 0 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+.summary a {
+  color: #ffffff;
+  font-weight: 680;
+  text-decoration-color: rgba(255, 255, 255, 0.9);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.summary a:hover,
+.summary a:focus-visible {
+  color: #e6f6ff;
+  text-decoration-color: #e6f6ff;
 }
 
 .stackLabel {
@@ -489,14 +502,57 @@ button {
   margin-top: 1.1rem;
 }
 
-.technologyList li {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.technologyItem {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 0.75rem;
-  color: #f5fbff;
+  color: rgba(233, 244, 252, 0.92);
   font-size: 0.98rem;
   font-weight: 620;
   padding: 0.55rem 0.82rem;
+}
+
+.technologyItemLink {
+  background: linear-gradient(180deg, rgba(67, 177, 244, 0.42), rgba(38, 140, 204, 0.28));
+  border-color: rgba(170, 228, 255, 0.95);
+  box-shadow:
+    0 0 0 1px rgba(182, 233, 255, 0.35) inset,
+    0 6px 18px rgba(18, 118, 179, 0.22);
+  color: #ffffff;
+}
+
+.technologyLink {
+  align-items: center;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 0.46rem;
+  text-decoration: none;
+}
+
+.technologyItemLink .technologyLink {
+  font-weight: 700;
+}
+
+.technologyLink:hover,
+.technologyLink:focus-visible {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.85);
+  text-underline-offset: 3px;
+}
+
+.technologyLinkArrow {
+  font-size: 0.9em;
+  font-weight: 800;
+  opacity: 0.95;
+}
+
+.technologyIcon {
+  fill: currentColor;
+  flex: 0 0 auto;
+  height: 1rem;
+  width: 1rem;
 }
 
 @keyframes pulse {

@@ -1,10 +1,6 @@
 export type PortfolioContentBlock = {
-  eyebrow: string
-  title: string
   summary: string
-  highlights: string[]
   technologies?: string[]
-  detailLayout?: 'default' | 'career'
   stackLabel?: string
 }
 
