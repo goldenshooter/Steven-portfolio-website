@@ -20,7 +20,9 @@ type CityViewProps = {
 export function CityView({ background, hotspots }: CityViewProps) {
   const [activeHotspot, setActiveHotspot] = useState<HotspotConfig | null>(null)
   const [isDetailPanelVisible, setIsDetailPanelVisible] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const detailPanelTimerRef = useRef<number | null>(null)
+  const menuRef = useRef<HTMLDivElement | null>(null)
 
   const isDetailActive = Boolean(activeHotspot)
 
@@ -48,6 +50,7 @@ export function CityView({ background, hotspots }: CityViewProps) {
   const handleHotspotSelect = useCallback(
     (hotspot: HotspotConfig) => {
       clearDetailPanelTimer()
+      setIsMenuOpen(false)
       setActiveHotspot(hotspot)
 
       setIsDetailPanelVisible(false)
@@ -65,6 +68,10 @@ export function CityView({ background, hotspots }: CityViewProps) {
     setActiveHotspot(null)
   }, [clearDetailPanelTimer])
 
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen((isOpen) => !isOpen)
+  }, [])
+
   useEffect(() => {
     return () => clearDetailPanelTimer()
   }, [clearDetailPanelTimer])
@@ -72,6 +79,7 @@ export function CityView({ background, hotspots }: CityViewProps) {
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
+        setIsMenuOpen(false)
         closeActiveView()
       }
     }
@@ -79,6 +87,21 @@ export function CityView({ background, hotspots }: CityViewProps) {
     window.addEventListener('keydown', closeOnEscape)
     return () => window.removeEventListener('keydown', closeOnEscape)
   }, [closeActiveView])
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return
+    }
+
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('pointerdown', closeOnOutsideClick)
+    return () => window.removeEventListener('pointerdown', closeOnOutsideClick)
+  }, [isMenuOpen])
 
   return (
     <main className="cityExperience" aria-label="Interactive Auckland portfolio">
@@ -88,11 +111,33 @@ export function CityView({ background, hotspots }: CityViewProps) {
           data-detail-active={isDetailActive}
           data-detail-hotspot-active={isDetailActive}
         >
-          <button className="menuButton" type="button" aria-label="Open site menu">
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-          </button>
+          <nav className="siteMenu" ref={menuRef} aria-label="Portfolio pages">
+            <button
+              aria-controls="portfolio-menu"
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? 'Close site menu' : 'Open site menu'}
+              className="menuButton"
+              onClick={toggleMenu}
+              type="button"
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+
+            <div className="menuPanel" data-open={isMenuOpen} id="portfolio-menu">
+              {hotspots.map((hotspot) => (
+                <button
+                  className="menuItem"
+                  key={hotspot.id}
+                  onClick={() => handleHotspotSelect(hotspot)}
+                  type="button"
+                >
+                  {hotspot.title}
+                </button>
+              ))}
+            </div>
+          </nav>
 
           <div
             className="cityCanvas"
