@@ -1,8 +1,6 @@
 import type { HotspotConfig } from '../types/portfolio'
 
 export const aucklandBackground = {
-  // Replace this file with your final Auckland aerial image, or point this
-  // value at a new file you add under public/images.
   src: '/images/auckland-main.jpg',
   alt: 'Auckland skyline across the harbour with Sky Tower and central city buildings',
 }
@@ -20,7 +18,7 @@ export const hotspots: HotspotConfig[] = [
     },
     content: {
       summary:
-        'Senior Front-End Engineer with 8+ years of experience building scalable, customer-facing web applications using React and TypeScript. You can find my resume here: [Steven Zhang Resume](https://drive.google.com/drive/folders/0B6n2fFw009PyeTdDVVV3OWVHc3M?resourcekey=0-wV7naV1cACQj_2vhoV64rQ&usp=sharing).',
+        'Senior Front-End Engineer with 8+ years of experience building scalable, customer-facing web applications using React and TypeScript. You can find my resume by clicking: [Steven Zhang Resume](https://drive.google.com/drive/folders/0B6n2fFw009PyeTdDVVV3OWVHc3M?resourcekey=0-wV7naV1cACQj_2vhoV64rQ&usp=sharing).',
       stackLabel: 'Tech Stack',
       technologies: ['React', 'TypeScript', 'Next.js', 'Node.js', 'Azure', 'GCP'],
     },
@@ -52,12 +50,11 @@ export const hotspots: HotspotConfig[] = [
     },
     content: {
       summary:
-        'When you help someone, you help everyone. I have been involved in various community and volunteer work, including Toastmasters, CITA, church groups, and local community initiatives.',
+        'When you help someone, you help everyone. I have been involved in various community and volunteer work, including Toastmasters, CITA, and local community initiatives.',
       stackLabel: 'Volunteer Work',
       technologies: [
         'Toastmaster: https://www.facebook.com/photo?fbid=1343258371178520&set=a.459610599543306',
         'CITA: https://www.linkedin.com/feed/update/urn:li:activity:7490641344399470592/',
-        'Church group',
         'Local community',
       ],
     },
