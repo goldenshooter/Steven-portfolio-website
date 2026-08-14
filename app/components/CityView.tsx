@@ -104,10 +104,6 @@ export function CityView({ background, hotspots }: CityViewProps) {
             <span aria-hidden="true" />
           </button>
 
-          <button className="aboutSiteButton" type="button">
-            About this site
-          </button>
-
           <div
             className="cityCanvas"
             data-zoomed={shouldZoom}
@@ -142,10 +138,6 @@ export function CityView({ background, hotspots }: CityViewProps) {
           <div className="exploreCard" aria-hidden="true">
             <strong>Explore Auckland</strong>
             <span>Click a location to zoom in and learn more about me</span>
-          </div>
-
-          <div className="gestureHint" aria-hidden="true">
-            Scroll / drag to look around
           </div>
 
           <HotspotDetailPanel
