@@ -14,8 +14,6 @@ export const hotspots: HotspotConfig[] = [
     location: 'Sky Tower',
     x: 26.4,
     y: 45.6,
-    zoom: 2.36,
-    pan: { x: 7, y: -8 },
     detailImage: {
       src: '/images/sky-tower-detail.png',
       alt: 'Close-up view of Sky Tower in Auckland',

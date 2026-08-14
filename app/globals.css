@@ -62,8 +62,8 @@ button {
   top: 50%;
   transform: translate3d(-50%, -50%, 0) scale(1);
   transition:
-    transform 700ms cubic-bezier(0.2, 0.78, 0.16, 1),
-    filter 700ms ease;
+    transform 500ms cubic-bezier(0.2, 0.78, 0.16, 1),
+    filter 500ms ease;
   width: max(100%, calc(100svh * 1.533));
   will-change: transform;
 }
@@ -190,7 +190,9 @@ button {
   opacity: 0;
   position: absolute;
   transform: translate(-50%, -50%);
-  transition: opacity 200ms ease;
+  transition:
+    opacity 100ms ease,
+    transform 100ms ease;
   width: min(78vw, 70rem);
   z-index: 8;
 }
@@ -502,112 +504,5 @@ button {
     box-shadow:
       0 0 0 1rem rgba(12, 37, 60, 0),
       0 0 18px rgba(255, 255, 255, 0.45);
-  }
-}
-
-@media (max-width: 720px) {
-  .introPanel {
-    top: 4.7rem;
-  }
-
-  .introPanel h1 {
-    font-size: clamp(2.35rem, 14vw, 4rem);
-  }
-
-  .exploreCard {
-    bottom: 0.8rem;
-    left: 0.8rem;
-  }
-
-  .hotspot {
-    gap: 0.5rem;
-  }
-
-  .hotspotLabel {
-    min-width: 0;
-    padding: 0.55rem 0.62rem;
-  }
-
-  .hotspotLabel small {
-    display: none;
-  }
-
-  .locationOverlay {
-    bottom: 0;
-    left: 0;
-    max-width: none;
-    right: 0;
-  }
-
-  .detailCard {
-    right: 1rem;
-    top: auto;
-    transform: translateY(0.75rem);
-    width: calc(100vw - 2rem);
-    bottom: 1rem;
-  }
-
-  .detailCard[data-visible='true'] {
-    transform: translateY(0);
-  }
-
-  .detailContent {
-    border-left: 0;
-    display: block;
-    bottom: 0;
-    left: 0;
-    max-height: 56svh;
-    overflow: auto;
-    right: 0;
-    top: auto;
-    width: auto;
-  }
-
-  .careerDetailShell {
-    min-height: min(92svh, 44rem);
-  }
-
-  .careerDetailShell::after {
-    backdrop-filter: blur(3px);
-    background: linear-gradient(
-      0deg,
-      rgba(8, 29, 48, 0.62),
-      rgba(8, 29, 48, 0.2) 56%,
-      rgba(8, 29, 48, 0.08)
-    );
-  }
-
-  .detailCard .portfolioContent h2 {
-    font-size: clamp(1.55rem, 9vw, 2.25rem);
-  }
-
-  .careerHeading span:last-child {
-    font-size: clamp(1.55rem, 8.4vw, 2rem);
-  }
-
-  .detailCard .summary,
-  .detailCard .highlightList {
-    font-size: 0.95rem;
-  }
-
-  .detailCard .highlightList {
-    gap: 0.45rem;
-  }
-
-  .detailCard .technologyList {
-    gap: 0.35rem;
-  }
-
-  .detailCard .technologyList li {
-    font-size: 0.84rem;
-  }
-
-  .overlayChrome {
-    border-bottom: 0;
-    border-left: 0;
-    border-radius: 0.5rem 0.5rem 0 0;
-    border-right: 0;
-    max-height: 58svh;
-    overflow: auto;
   }
 }

@@ -6,8 +6,8 @@ import { Hotspot } from './Hotspot'
 import { HotspotDetailPanel } from './HotspotDetailPanel'
 import type { HotspotConfig } from '../types/portfolio'
 
-const DETAIL_PANEL_DELAY_MS = 1500
-const DEFAULT_DETAIL_ZOOM = 2.2
+const DETAIL_PANEL_DELAY_MS = 400
+const DEFAULT_DETAIL_ZOOM = 5
 
 type CityViewProps = {
   background: {
@@ -22,8 +22,7 @@ export function CityView({ background, hotspots }: CityViewProps) {
   const [isDetailPanelVisible, setIsDetailPanelVisible] = useState(false)
   const detailPanelTimerRef = useRef<number | null>(null)
 
-  const activeDetailHotspot = activeHotspot?.detailImage ? activeHotspot : null
-  const isDetailActive = Boolean(activeDetailHotspot)
+  const isDetailActive = Boolean(activeHotspot)
 
   const clearDetailPanelTimer = useCallback(() => {
     if (detailPanelTimerRef.current !== null) {
@@ -35,30 +34,21 @@ export function CityView({ background, hotspots }: CityViewProps) {
   const shouldZoom = isDetailActive
 
   const cityTransform = useMemo(() => {
-    if (!activeDetailHotspot) {
+    if (!activeHotspot) {
       return 'translate3d(-50%, -50%, 0) scale(1)'
     }
 
-    const zoom = activeDetailHotspot.zoom ?? DEFAULT_DETAIL_ZOOM
-    const panX = activeDetailHotspot.pan?.x ?? 0
-    const panY = activeDetailHotspot.pan?.y ?? 0
+    return `translate3d(calc(-50%), calc(-50%), 0) scale(${DEFAULT_DETAIL_ZOOM})`
+  }, [activeHotspot])
 
-    return `translate3d(calc(-50% + ${panX}%), calc(-50% + ${panY}%), 0) scale(${zoom})`
-  }, [activeDetailHotspot])
-
-  const transformOrigin = activeDetailHotspot
-    ? `${activeDetailHotspot.x}% ${activeDetailHotspot.y}%`
+  const transformOrigin = activeHotspot
+    ? `${activeHotspot.x}% ${activeHotspot.y}%`
     : '50% 50%'
 
   const handleHotspotSelect = useCallback(
     (hotspot: HotspotConfig) => {
       clearDetailPanelTimer()
       setActiveHotspot(hotspot)
-
-      if (!hotspot.detailImage) {
-        setIsDetailPanelVisible(false)
-        return
-      }
 
       setIsDetailPanelVisible(false)
       detailPanelTimerRef.current = window.setTimeout(() => {
@@ -141,7 +131,7 @@ export function CityView({ background, hotspots }: CityViewProps) {
           </div>
 
           <HotspotDetailPanel
-            hotspot={isDetailActive && isDetailPanelVisible ? activeDetailHotspot : null}
+            hotspot={isDetailActive && isDetailPanelVisible ? activeHotspot : null}
             onClose={closeActiveView}
             variant="detail"
           />
