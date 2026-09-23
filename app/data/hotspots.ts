@@ -1,8 +1,10 @@
 import type { HotspotConfig } from '../types/portfolio'
 
 export const aucklandBackground = {
-  src: '/images/auckland-main.jpg',
+  src: '/images/auckland-main.webp',
   alt: 'Auckland skyline across the harbour with Sky Tower and central city buildings',
+  blurDataURL:
+    'data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADwAQCdASoQAAoAA4BaJbACdADpJ0Fu8oAA/utv5usFKf2/MHf9Ce0ibH73SjLr4esIhaiTkeMWH7ha4AA=',
 }
 
 export const hotspots: HotspotConfig[] = [
@@ -13,8 +15,10 @@ export const hotspots: HotspotConfig[] = [
     x: 26.4,
     y: 45.6,
     detailImage: {
-      src: '/images/sky-tower-detail.png',
+      src: '/images/sky-tower-detail.webp',
       alt: 'Close-up view of Sky Tower in Auckland',
+      blurDataURL:
+        'data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAADwAwCdASoQABgAPu1iqU2ppaOiMAgBMB2JbACdMoAC9YdLA1R435c4AN/hnnTg5lpg3GfXRxDCURbG0iSgdf50782QutdfVse1S0CNNXL6Ur7zl0JOw7OZ5EMaJo94fe+ERoUKa9A5HFgnMfxKq93I3g1GMmw8YBSXfWY6TerELdAA',
     },
     content: {
       summary:
@@ -30,8 +34,10 @@ export const hotspots: HotspotConfig[] = [
     x: 38.8,
     y: 60.8,
     detailImage: {
-      src: '/images/vero-centre-detail.png',
+      src: '/images/vero-centre-detail.webp',
       alt: 'Close-up view of Vero Centre in Auckland',
+      blurDataURL:
+        'data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAQCdASoQAAwAA4BaJbACdADcNM8QmgD+lJtSAE0YkWL8J0CqEyH1DIuH2vfF5DMUONpjNXO0RcQlfFKBoCRnXUrKzHg3C5hVcG5YERXAAA==',
     },
     content: {
       summary:
@@ -45,8 +51,10 @@ export const hotspots: HotspotConfig[] = [
     x: 53.6,
     y: 59.2,
     detailImage: {
-      src: '/images/pwc-tower-detail.png',
+      src: '/images/pwc-tower-detail.webp',
       alt: 'Close-up view of PWC Tower in Auckland',
+      blurDataURL:
+        'data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAABwAgCdASoQAAwAA4BaJbACdAEXutnXkwAWEG4AAP2jv+H7vUJe+keoQvdNqDd3+DO4G5qHm2bynxv3G8R1P+MCPVcCz8m+tXqP/ZOssCEAAA==',
     },
     content: {
       summary:
@@ -66,8 +74,10 @@ export const hotspots: HotspotConfig[] = [
     x: 33.8,
     y: 76.2,
     detailImage: {
-      src: '/images/harbour-edge.png',
+      src: '/images/harbour-edge.webp',
       alt: 'Close-up view of Harbour Edge in Auckland',
+      blurDataURL:
+        'data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAAAQBACdASoQABcAPu1iqU2ppaQiMAgBMB2JZgCdLwAB0X4eqFjSwLW+IAD+w07PP2SLxfNQkzPzItN8UgIo+KYrjD4D4wIv+Vu42We7WkjXL5AtoZIfQwSkXe2p9IqUSeQy0Ix6lc6vgAAA',
     },
     content: {
       summary:

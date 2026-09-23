@@ -19,5 +19,6 @@ export type HotspotConfig = {
   detailImage?: {
     src: string
     alt: string
+    blurDataURL?: string
   }
 }

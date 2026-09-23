@@ -13,6 +13,7 @@ type CityViewProps = {
   background: {
     src: string
     alt: string
+    blurDataURL?: string
   }
   hotspots: HotspotConfig[]
 }
@@ -146,12 +147,13 @@ export function CityView({ background, hotspots }: CityViewProps) {
           >
             <Image
               alt={background.alt}
+              blurDataURL={background.blurDataURL}
               className="cityImage"
               fill
+              placeholder={background.blurDataURL ? 'blur' : undefined}
               priority
               sizes="(max-width: 980px) 100vw, 80vw"
               src={background.src}
-              unoptimized
             />
             <div className="cityVignette" aria-hidden="true" />
 

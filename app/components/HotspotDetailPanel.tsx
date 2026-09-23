@@ -68,11 +68,12 @@ export function HotspotDetailPanel({ hotspot, onClose, variant }: HotspotDetailP
             <div className="careerDetailMedia" aria-hidden="true">
               <Image
                 alt={hotspot.detailImage.alt}
+                blurDataURL={hotspot.detailImage.blurDataURL}
                 className="careerDetailMediaImage"
                 fill
+                placeholder={hotspot.detailImage.blurDataURL ? 'blur' : undefined}
                 sizes="(max-width: 720px) 100vw, 50vw"
                 src={hotspot.detailImage.src}
-                unoptimized
               />
             </div>
           ) : null}
