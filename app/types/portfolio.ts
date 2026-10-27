@@ -2,6 +2,10 @@ export type PortfolioContentBlock = {
   summary: string
   technologies?: string[]
   stackLabel?: string
+  certificates?: {
+    title: string
+    href: string
+  }[]
 }
 
 export type HotspotConfig = {

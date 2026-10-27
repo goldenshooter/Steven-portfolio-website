@@ -46,6 +46,29 @@ function DetailContent({
           </ul>
         </>
       )}
+
+      {content.certificates && (
+        <>
+          <p className="stackLabel">Certificates</p>
+          <ul className="technologyList" aria-label="Certificates">
+            {content.certificates.map((certificate) => (
+              <li className="technologyItem technologyItemLink" key={certificate.title}>
+                <a
+                  className="technologyLink"
+                  href={certificate.href}
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  <span>{certificate.title}</span>
+                  <span aria-hidden="true" className="technologyLinkArrow">
+                    ↗
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </article>
   )
 }

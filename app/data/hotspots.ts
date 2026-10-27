@@ -42,6 +42,16 @@ export const hotspots: HotspotConfig[] = [
     content: {
       summary:
         'Senior Front-End Engineer focused on building reliable, customer-facing products with strong usability and performance. I bring 8+ years of experience delivering scalable React and TypeScript applications, collaborating across product, design, and engineering teams, and mentoring developers to raise team capability.',
+      certificates: [
+        {
+          title: 'JavaScript Algorithms and Data Structures',
+          href: '/certificates/Javascript algorighms and data structures.png',
+        },
+        {
+          title: 'Next.js App Router Fundamentals',
+          href: '/certificates/Next.js - App Router Fundamentals - certificate.pdf',
+        },
+      ],
     },
   },
   {
